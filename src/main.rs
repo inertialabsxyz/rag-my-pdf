@@ -6,7 +6,7 @@ use rig::integrations::cli_chatbot::ChatBotBuilder;
 use rig::vector_store::in_memory_store::InMemoryVectorStore;
 use rig::{client::ProviderClient, providers::openai};
 use std::path::Path;
-use tracing::{debug, error, info, warn};
+use tracing::{debug, info, warn};
 use tracing_subscriber::{EnvFilter, fmt, prelude::*};
 
 fn load_pdf_content<P: AsRef<Path>>(file_path: P) -> Result<String> {
@@ -105,7 +105,7 @@ async fn main() -> Result<()> {
 
     info!("Building embeddings from {} chunks", chunks.len());
     let mut embeddings_builder = EmbeddingsBuilder::new(embedding_model.clone());
-    for (i, chunk) in chunks.iter().enumerate() {
+    for chunk in chunks.iter() {
         embeddings_builder = embeddings_builder.document(chunk.clone())?;
     }
     let embeddings = embeddings_builder.build().await?;
