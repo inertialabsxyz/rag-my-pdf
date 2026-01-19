@@ -1,0 +1,13 @@
+[package]
+name = "rag-my-pdf"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rig-core = "0.28.0"
+tokio = { version = "1.49.0", features = ["macros", "rt-multi-thread"] }
+anyhow = "1.0.100"
+pdf-extract = "0.7.12"
+clap = { version = "4.5", features = ["derive"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
